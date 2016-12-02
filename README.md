@@ -1,2 +1,2 @@
-# super-duper-succotash
-University project databases
+# Marotti Hotels Database
+A Java based database application.
