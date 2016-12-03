@@ -11,8 +11,9 @@ public class OraBookingDao implements BookingDao {
 	@Override
 	public Booking getBooking(int booking_id) {
 
-		String sql = "select booking_id, customer_id, check_in_date,"
-				+ "check_out_date, bookingcode from booking where booking_id=?";
+		String sql = "SELECT booking_id, customer_id, check_in_date,check_out_date, bookingcode "
+				+ "FROM booking "
+				+ "WHERE booking_id=?";
 		Booking b = new Booking();
 		try {
 			PreparedStatement pstmt = OracleDaoFactory.getConnection().prepareStatement(sql);
@@ -40,8 +41,12 @@ public class OraBookingDao implements BookingDao {
 	@Override
 	public List<Booking> getAllBookings() {
 
-		String sql = "select booking_id, customer_id, check_in_date,"
-					+ "check_out_date, bookingcode from booking where booking_id=?";
+		// java.sql.SQLException: Missing IN or OUT parameter at index:: 1
+		// at dao.OraBookingDao.getAllBookings(OraBookingDao.java:57)
+		
+		String sql = "SELECT booking_id, customer_id, check_in_date, check_out_date, bookingcode "
+				+ "FROM booking "
+				+ "WHERE booking_id=?;";
 
 		List<Booking> bList = new ArrayList<Booking>();
 
@@ -73,8 +78,8 @@ public class OraBookingDao implements BookingDao {
 
 	@Override
 	public boolean addBooking(Booking b) {
-		String sql = "insert into booking ( booking_id, customer_id, check_in_date,"
-					+ "check_out_date, bookingcode) values ( ?,?,?,?,?)";
+		String sql = "INSERT INTO booking ( booking_id, customer_id, check_in_date,"
+					+ "check_out_date, bookingcode) VALUES ( ?,?,?,?,?)";
 
 		PreparedStatement pstmt;
 		try {
@@ -100,8 +105,9 @@ public class OraBookingDao implements BookingDao {
 
 	@Override
 	public boolean updateBooking(Booking b) {
-		String sql = "update booking set booking_id=? , customer_id=?"
-				+ "check_in_date=?, check_out_date=?, bookingcode=? where booking_id=?";
+		String sql = "UPDATE booking "
+				+ "SET booking_id=? , customer_id=?,check_in_date=?, check_out_date=?, bookingcode=? "
+				+ "WHERE booking_id=?";
 
 		PreparedStatement pstmt;
 		try {

@@ -11,7 +11,10 @@ public class OraCustomerDao implements CustomerDao {
 	@Override
 	public Customer getCustomer(int customer_id) {
 
-		String sql = "select customer_id, customer_first_name, customer_last_name, account_number, birthdate from customer where customer_id=?";
+		//String sql = "select customer_id, customer_first_name, customer_last_name, account_number, birthdate from customer where customer_id=?";
+		
+		String sql = "select customer_id, customer_first_name, customer_last_name"
+				+ " from customer where customer_id=?";
 		Customer c = new Customer();
 		try {
 			PreparedStatement pstmt = OracleDaoFactory.getConnection().prepareStatement(sql);
@@ -23,8 +26,11 @@ public class OraCustomerDao implements CustomerDao {
 				c.setCustomer_id(rs.getInt("customer_id"));
 				c.setCustomer_first_name(rs.getString("customer_first_name"));
 				c.setCustomer_last_name(rs.getString("customer_last_name"));
+				
+				// problem with these two
+				//java.sql.SQLException: Invalid column name
 				c.setAccount_number(rs.getInt("account_number"));
-				c.setBirthdate(rs.getString(rs.getString("birthdate")));
+				//c.setBirthdate(rs.getString(rs.getString("birthdate")));
 			}
 
 			pstmt.close();
