@@ -12,6 +12,8 @@ public class App {
 
 	public static void main(String[] args) {
 
+		// just testing to check sourcetree from vm
+
 		DaoFactory daoFactory = DaoFactory.getFactory(DaoFactory.ORACLE);
 		CustomerDao cDao = daoFactory.createCustomerDao();
 		BookingDao bDao = daoFactory.createBookingDao();
@@ -23,14 +25,14 @@ public class App {
 
 		System.out.println("Customer first name: " + c1.getCustomer_first_name());
 		System.out.println("Customer last name: " + c1.getCustomer_last_name());
-		
+
 		// problem here
 		//System.out.println("Account number: " + c1.getAccount_number());
 		//System.out.println(c1.getBirthdate());
 		System.out.println();
 		System.out.println("--- --- --- ---");
-		
-		
+
+
 		// doesn't work, exception with Missing IN or OUT parameter at index:: 1
 //		System.out.println("Test 1.2: Data of all customers");
 //		List<Customer> custList = cDao.getAllCustomers();
@@ -43,12 +45,12 @@ public class App {
 //			System.out.println("Customer last name: " + c.getCustomer_last_name());
 //		}
 //		System.out.println("--- --- --- ---");
-		
-		
-		
+
+
+
 		// here everything is good
 //		System.out.println("Test 2.1: Get booking data");
-//		
+//
 //		Booking b1 = bDao.getBooking(100);
 //		System.out.println("Booking details: " + b1.getBooking_id());
 //		System.out.println("Booking code: " + b1.getBookingcode());
@@ -57,12 +59,12 @@ public class App {
 //		System.out.println("Customer id: " + b1.getCustomer_id());
 //		System.out.println();
 //		System.out.println("--- --- --- ---");
-		
-		
-		// something wrong here 
+
+
+		// something wrong here
 		// Missing IN or OUT parameter at index:: 1 in OraBookingDao at line 52
 		// with ResultSet rs = pstmt.executeQuery();
-		
+
 //		System.out.println("Test 2.2: Data of all bookings");
 //		List<Booking> bookingsList = bDao.getAllBookings();
 //		Iterator<Booking> iter = bookingsList.iterator();
@@ -77,9 +79,9 @@ public class App {
 //			System.out.println("Booking code: " + b.getBookingcode());
 //		}
 //		System.out.println("--- --- --- ---");
-		
-		
-	
+
+
+
 		// everything is good here
 //		System.out.println("Test 3.2: Add new booking");
 //
