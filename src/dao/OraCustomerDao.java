@@ -13,7 +13,7 @@ public class OraCustomerDao implements CustomerDao {
 
 		//String sql = "select customer_id, customer_first_name, customer_last_name, account_number, birthdate from customer where customer_id=?";
 		
-		String sql = "select customer_id, customer_first_name, customer_last_name"
+		String sql = "select customer_id, customer_first_name, customer_last_name, account_number, birthdate"
 				+ " from customer where customer_id=?";
 		Customer c = new Customer();
 		try {
@@ -30,7 +30,7 @@ public class OraCustomerDao implements CustomerDao {
 				// problem with these two
 				//java.sql.SQLException: Invalid column name
 				c.setAccount_number(rs.getInt("account_number"));
-				//c.setBirthdate(rs.getString(rs.getString("birthdate")));
+				c.setBirthdate(rs.getString("birthdate"));
 			}
 
 			pstmt.close();
@@ -44,7 +44,8 @@ public class OraCustomerDao implements CustomerDao {
 
 	@Override
 	public List<Customer> getAllCustomers() {
-		String sql = "select customer_id, customer_first_name, customer_last_name, account_number, birthdate from customer where customer_id=?";
+		String sql = "select customer_id, customer_first_name, customer_last_name, "
+				+ "account_number, birthdate from customer";
 		List<Customer> cList = new ArrayList<Customer>();
 
 		PreparedStatement pstmt;
@@ -60,7 +61,7 @@ public class OraCustomerDao implements CustomerDao {
 				c.setCustomer_first_name(rs.getString("customer_first_name"));
 				c.setCustomer_last_name(rs.getString("customer_last_name"));
 				c.setAccount_number(rs.getInt("account_number"));
-				c.setBirthdate(rs.getString(rs.getString("birthdate")));
+				c.setBirthdate(rs.getDate("birthdate").toString());
 				cList.add(c);
 			}
 

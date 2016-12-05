@@ -45,8 +45,7 @@ public class OraBookingDao implements BookingDao {
 		// at dao.OraBookingDao.getAllBookings(OraBookingDao.java:57)
 		
 		String sql = "SELECT booking_id, customer_id, check_in_date, check_out_date, bookingcode "
-				+ "FROM booking "
-				+ "WHERE booking_id=?;";
+				+ "FROM booking";
 
 		List<Booking> bList = new ArrayList<Booking>();
 
