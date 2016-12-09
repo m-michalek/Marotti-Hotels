@@ -1,4 +1,4 @@
-package dao;
+package CustomerDaoPackage;
 
 import java.util.List;
 

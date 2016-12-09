@@ -1,5 +1,8 @@
 package dao;
 
+import BookingDaoPackage.BookingDao;
+import CustomerDaoPackage.CustomerDao;
+
 public abstract class DaoFactory {
 
 	public static final int ORACLE = 1;

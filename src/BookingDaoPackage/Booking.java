@@ -1,4 +1,4 @@
-package dao;
+package BookingDaoPackage;
 
 public class Booking {
 

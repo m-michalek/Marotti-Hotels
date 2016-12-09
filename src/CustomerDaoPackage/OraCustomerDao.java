@@ -1,4 +1,4 @@
-package dao;
+package CustomerDaoPackage;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,13 +6,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import dao.OracleDaoFactory;
+
 public class OraCustomerDao implements CustomerDao {
 
 	@Override
 	public Customer getCustomer(int customer_id) {
 
-		//String sql = "select customer_id, customer_first_name, customer_last_name, account_number, birthdate from customer where customer_id=?";
-		
 		String sql = "select customer_id, customer_first_name, customer_last_name, account_number, birthdate"
 				+ " from customer where customer_id=?";
 		Customer c = new Customer();
@@ -26,9 +26,6 @@ public class OraCustomerDao implements CustomerDao {
 				c.setCustomer_id(rs.getInt("customer_id"));
 				c.setCustomer_first_name(rs.getString("customer_first_name"));
 				c.setCustomer_last_name(rs.getString("customer_last_name"));
-				
-				// problem with these two
-				//java.sql.SQLException: Invalid column name
 				c.setAccount_number(rs.getInt("account_number"));
 				c.setBirthdate(rs.getString("birthdate"));
 			}
@@ -97,7 +94,6 @@ public class OraCustomerDao implements CustomerDao {
 			e.printStackTrace();
 		}
 
-
 		return false;
 	}
 
@@ -105,8 +101,6 @@ public class OraCustomerDao implements CustomerDao {
 	public boolean updateCustomer(Customer c) {
 		String sql = "update customer set customer_id=? , customer_first_name=?"
 				+ "customer_last_name=?, account_number=?, birthdate=? where customer_id=?";
-
-		//String sql = "update customer set p_nr=? , name=? where p_nr=?";
 
 		PreparedStatement pstmt;
 		try {

@@ -1,4 +1,4 @@
-package dao;
+package BookingDaoPackage;
 
 import java.util.List;
 
