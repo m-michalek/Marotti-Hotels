@@ -19,15 +19,15 @@ public class App {
 		// customer tests
 		//testGetCustomerData(cDao);
 
-		//testGetDataOfAllCustomers(cDao);
+		testGetDataOfAllCustomers(cDao);
 
-		testAddCustomer(cDao);
+		//testAddCustomer(cDao);
 		
 		//testGetBookingData(bDao);
 
 		//testGetDataOfAllBookings(bDao);
 
-		testAddNewBooking(bDao);
+		//testAddNewBooking(bDao);
 	}
 
 	private static void testAddCustomer(CustomerDao cDao) {
