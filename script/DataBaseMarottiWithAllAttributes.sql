@@ -1,22 +1,25 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 12c                           */
-/* Created on:     09.12.2016 15:09:45                          */
+/* Created on:     18.12.2016 15:41:37                          */
 /*==============================================================*/
 
 
 alter table BOOKING
-   drop constraint FK_BOOKING_BOOKINGCU_CUSTOMER;
+   drop constraint FK_BOOKING_CUSTOMERB_CUSTOMER;
 
 alter table ROOM
    drop constraint FK_ROOM_HOTELROOM_HOTEL;
 
 alter table ROOM
-   drop constraint FK_ROOM_ROOMBOOKI_BOOKING;
+   drop constraint FK_ROOM_RCATEGORY_RCATEGOR;
 
-alter table ROOM
-   drop constraint FK_ROOM_ROOM_CATE_ROOM_CAT;
+alter table ROOMBOOKING
+   drop constraint FK_ROOMBOOK_ROOMBOOKI_ROOM;
 
-drop index BOOKINGCUSTOMER_FK;
+alter table ROOMBOOKING
+   drop constraint FK_ROOMBOOK_ROOMBOOKI_BOOKING;
+
+drop index CUSTOMERBOOKING_FK;
 
 drop table BOOKING cascade constraints;
 
@@ -24,15 +27,19 @@ drop table CUSTOMER cascade constraints;
 
 drop table HOTEL cascade constraints;
 
-drop index ROOMBOOKING_FK;
+drop table RCATEGORY cascade constraints;
 
-drop index ROOM_CATEGORYROOM_FK;
+drop index RCATEGORYROOM_FK;
 
 drop index HOTELROOM_FK;
 
 drop table ROOM cascade constraints;
 
-drop table ROOM_CATEGORY cascade constraints;
+drop index ROOMBOOKING2_FK;
+
+drop index ROOMBOOKING_FK;
+
+drop table ROOMBOOKING cascade constraints;
 
 /*==============================================================*/
 /* Table: BOOKING                                               */
@@ -42,14 +49,14 @@ create table BOOKING (
    CUSTOMER_ID          NUMBER(10)            not null,
    CHECK_IN_DATE        DATE,
    CHECK_OUT_DATE       DATE,
-   BOOKINGCODE          VARCHAR2(10),
+   BOOKING_CODE         VARCHAR2(10),
    constraint PK_BOOKING primary key (BOOKING_ID)
 );
 
 /*==============================================================*/
-/* Index: BOOKINGCUSTOMER_FK                                    */
+/* Index: CUSTOMERBOOKING_FK                                    */
 /*==============================================================*/
-create index BOOKINGCUSTOMER_FK on BOOKING (
+create index CUSTOMERBOOKING_FK on BOOKING (
    CUSTOMER_ID ASC
 );
 
@@ -76,13 +83,27 @@ create table HOTEL (
 );
 
 /*==============================================================*/
+/* Table: RCATEGORY                                             */
+/*==============================================================*/
+create table RCATEGORY (
+   RCATEGORY_ID         NUMBER(3)             not null,
+   RCATEGORY_NAME       VARCHAR2(30),
+   NUMBER_OF_BEDS       NUMBER(2),
+   PRICE                NUMBER(6),
+   ROOM_DESCRIPTION     VARCHAR2(300),
+   ROOM_SIZE            NUMBER(4),
+   constraint PK_RCATEGORY primary key (RCATEGORY_ID)
+);
+
+/*==============================================================*/
 /* Table: ROOM                                                  */
 /*==============================================================*/
 create table ROOM (
-   ROOM_CATEGORY_ID     CHAR(10)              not null,
-   BOOKING_ID           NUMBER(10),
+   ROOM_ID              NUMBER(2)             not null,
    HOTEL_ID             NUMBER(10)            not null,
-   ROOM_ID              NUMBER(4)
+   RCATEGORY_ID         NUMBER(3)             not null,
+   ROOM_NUMBER          NUMBER(5),
+   constraint PK_ROOM primary key (ROOM_ID)
 );
 
 /*==============================================================*/
@@ -93,33 +114,37 @@ create index HOTELROOM_FK on ROOM (
 );
 
 /*==============================================================*/
-/* Index: ROOM_CATEGORYROOM_FK                                  */
+/* Index: RCATEGORYROOM_FK                                      */
 /*==============================================================*/
-create index ROOM_CATEGORYROOM_FK on ROOM (
-   ROOM_CATEGORY_ID ASC
+create index RCATEGORYROOM_FK on ROOM (
+   RCATEGORY_ID ASC
+);
+
+/*==============================================================*/
+/* Table: ROOMBOOKING                                           */
+/*==============================================================*/
+create table ROOMBOOKING (
+   ROOM_ID              NUMBER(2)             not null,
+   BOOKING_ID           NUMBER(10)            not null,
+   constraint PK_ROOMBOOKING primary key (ROOM_ID, BOOKING_ID)
 );
 
 /*==============================================================*/
 /* Index: ROOMBOOKING_FK                                        */
 /*==============================================================*/
-create index ROOMBOOKING_FK on ROOM (
+create index ROOMBOOKING_FK on ROOMBOOKING (
+   ROOM_ID ASC
+);
+
+/*==============================================================*/
+/* Index: ROOMBOOKING2_FK                                       */
+/*==============================================================*/
+create index ROOMBOOKING2_FK on ROOMBOOKING (
    BOOKING_ID ASC
 );
 
-/*==============================================================*/
-/* Table: ROOM_CATEGORY                                         */
-/*==============================================================*/
-create table ROOM_CATEGORY (
-   ROOM_CATEGORY_ID     CHAR(10)              not null,
-   ROOM_SIZE            NUMBER(3),
-   NUMBER_OF_BEDS       NUMBER(2),
-   PRICE                NUMBER(4),
-   _ROOM_DESCRIPTION    VARCHAR2(300),
-   constraint PK_ROOM_CATEGORY primary key (ROOM_CATEGORY_ID)
-);
-
 alter table BOOKING
-   add constraint FK_BOOKING_BOOKINGCU_CUSTOMER foreign key (CUSTOMER_ID)
+   add constraint FK_BOOKING_CUSTOMERB_CUSTOMER foreign key (CUSTOMER_ID)
       references CUSTOMER (CUSTOMER_ID);
 
 alter table ROOM
@@ -127,10 +152,14 @@ alter table ROOM
       references HOTEL (HOTEL_ID);
 
 alter table ROOM
-   add constraint FK_ROOM_ROOMBOOKI_BOOKING foreign key (BOOKING_ID)
-      references BOOKING (BOOKING_ID);
+   add constraint FK_ROOM_RCATEGORY_RCATEGOR foreign key (RCATEGORY_ID)
+      references RCATEGORY (RCATEGORY_ID);
 
-alter table ROOM
-   add constraint FK_ROOM_ROOM_CATE_ROOM_CAT foreign key (ROOM_CATEGORY_ID)
-      references ROOM_CATEGORY (ROOM_CATEGORY_ID);
+alter table ROOMBOOKING
+   add constraint FK_ROOMBOOK_ROOMBOOKI_ROOM foreign key (ROOM_ID)
+      references ROOM (ROOM_ID);
+
+alter table ROOMBOOKING
+   add constraint FK_ROOMBOOK_ROOMBOOKI_BOOKING foreign key (BOOKING_ID)
+      references BOOKING (BOOKING_ID);
 
