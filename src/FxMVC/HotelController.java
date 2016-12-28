@@ -1,6 +1,8 @@
 package FxMVC;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,8 +38,22 @@ public class HotelController {
 		hotelDescriptionLabel.setText(model.getHotelDescrModel());
 	}
 
+	
 	public void displayAllHotels(ActionEvent event) {
-		System.out.println("display all hotels");
+		System.out.println("controller: display all hotels ");
+		
+		List<String> hotelNames = new ArrayList<String>();
+		
+		List<HotelDto> listOfHotels = model.dislayAllHotels();
+		
+		for (HotelDto item : listOfHotels){
+			String name = item.getHotel_name();
+			System.out.println(name);
+			hotelNames.add(name);
+		}
+		
+		hotelListView.getItems().addAll(hotelNames);
+		
 	}
 
 	public void backBtnClicked(ActionEvent event) {
