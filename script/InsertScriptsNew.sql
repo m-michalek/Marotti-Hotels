@@ -69,9 +69,95 @@ select * from booking;
 insert into roombooking (ROOM_ID, BOOKING_ID) values (001, 100);
 insert into roombooking (ROOM_ID, BOOKING_ID) values (008, 101);
 
+insert into roombooking (ROOM_ID, BOOKING_ID) values (007, 101);
+
+
+-- special wishes category
+insert into specialwishescategory (SPECIALWISH_ID, SPECIALWISHDESCRIPTION, SPECIALWISHPRICE)
+values (001, 'Coffee', 5);
+
+insert into specialwishescategory (SPECIALWISH_ID, SPECIALWISHDESCRIPTION, SPECIALWISHPRICE)
+values (002, 'Extra bed', 15);
+
+insert into specialwishescategory (SPECIALWISH_ID, SPECIALWISHDESCRIPTION, SPECIALWISHPRICE)
+values (003, 'Special breakfast', 25);
+
+-- special wishes
+insert into specialwishes (ORDER_ID, SPECIALWISH_ID, BOOKING_ID)
+values (001, 001, 100);
+
+insert into specialwishes (ORDER_ID, SPECIALWISH_ID, BOOKING_ID)
+values (002, 002, 100);
+
+insert into specialwishes (ORDER_ID, SPECIALWISH_ID, BOOKING_ID)
+values (003, 002, 101);
+
 -- try to get info for the receipt
 
 select rb.booking_id, r.room_id, r.hotel_id, r.RCATEGORY_ID 
 from roombooking rb
 inner join room r
 on rb.ROOM_ID = r.ROOM_ID;
+
+-- receipt
+
+select *
+from customer c
+join booking b
+on c.customer_id=b.customer_id
+join roombooking rb
+on rb.booking_id=b.booking_id
+join room r
+on rb.room_id=r.room_id
+join hotel h
+on h.hotel_id=r.hotel_id
+join rcategory rc
+on rc.rcategory_id=r.rcategory_id
+join specialwishes sw
+on sw.booking_id=b.booking_id
+join specialwishescategory swc
+on swc.specialwish_id=sw.specialwish_id
+where b.booking_id=100;
+
+
+
+
+
+select c.customer_first_name, c.customer_last_name, b.booking_id, 
+b.check_in_date, b.check_out_date, b.booking_code, r.room_number, h.hotel_name, 
+rc.rcategory_name, rc.price, swc.specialwishdescription, swc.specialwishprice, 
+(b.check_out_date - b.check_in_date)*rc.price + swc.specialwishprice as total
+from customer c
+join booking b
+on c.customer_id=b.customer_id
+join roombooking rb
+on rb.booking_id=b.booking_id
+join room r
+on rb.room_id=r.room_id
+join hotel h
+on h.hotel_id=r.hotel_id
+join rcategory rc
+on rc.rcategory_id=r.rcategory_id
+join specialwishes sw
+on sw.booking_id=b.booking_id
+join specialwishescategory swc
+on swc.specialwish_id=sw.specialwish_id
+where b.booking_id=101;
+
+
+
+
+select b.booking_id, sum(swc.specialwishprice) as total
+from customer c
+join booking b
+on c.customer_id=b.customer_id
+join specialwishes sw
+on sw.booking_id=b.booking_id
+join specialwishescategory swc
+on swc.specialwish_id=sw.specialwish_id
+where b.booking_id=100
+group by b.booking_id;
+
+
+
+
