@@ -6,11 +6,10 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FxMVC.MainWindowController">
    <children>
-      <Label layoutX="98.0" layoutY="121.0" text="Label" />
-      <Label layoutX="98.0" layoutY="183.0" text="Label" />
-      <Label layoutX="98.0" layoutY="246.0" text="Label" />
-      <Button layoutX="199.0" layoutY="116.0" mnemonicParsing="false" onAction="#displayInfoAboutHotelsClicked" text="Display info about hotels" />
-      <Button layoutX="199.0" layoutY="178.0" mnemonicParsing="false" onAction="#bookAHotelClicked" text="Book a hotel" />
-      <Button layoutX="199.0" layoutY="241.0" mnemonicParsing="false" onAction="#printAReceiptClicked" text="Print a receipt" />
+      <Label layoutX="41.0" layoutY="349.0" text="Move to the customer view" />
+      <Button layoutX="207.0" layoutY="349.0" mnemonicParsing="false" onAction="#displayInfoAboutHotelsClicked" text="Display info about hotels" />
+      <Button layoutX="168.0" layoutY="187.0" mnemonicParsing="false" onAction="#showCustomerView" text="Customer" />
+      <Button layoutX="353.0" layoutY="187.0" mnemonicParsing="false" onAction="#showStaffView" text="Staff" />
+      <Label layoutX="207.0" layoutY="86.0" text="Welcome to Marotti Hotels" />
    </children>
 </AnchorPane>

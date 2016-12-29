@@ -26,13 +26,30 @@ public class MainWindowController {
 		}
 
 	}
+	
+	public void showCustomerView(ActionEvent event){
+		try {
+			Parent home_page_parent = FXMLLoader.load(getClass().getResource("CustomerView.fxml"));
+			Scene home_page_scene = new Scene(home_page_parent);
+			Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			app_stage.setScene(home_page_scene);
+			app_stage.show();
 
-	public void bookAHotelClicked(ActionEvent event) {
-		System.out.println("bookAHotel button clicked");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
+	
+	public void showStaffView(ActionEvent event){
+		try {
+			Parent home_page_parent = FXMLLoader.load(getClass().getResource("StaffView.fxml"));
+			Scene home_page_scene = new Scene(home_page_parent);
+			Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			app_stage.setScene(home_page_scene);
+			app_stage.show();
 
-	public void printAReceiptClicked(ActionEvent event) {
-		System.out.println("printAReceipt button clicked");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-
 }

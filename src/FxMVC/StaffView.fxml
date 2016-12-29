@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FxMVC.StaffController">
+   <children>
+      <Label layoutX="247.0" layoutY="24.0" text="Staff view" />
+      <Button layoutX="25.0" layoutY="112.0" mnemonicParsing="false" text="Show profit" />
+      <Label layoutX="162.0" layoutY="117.0" text="Show profit for the selected hotel in the selected timeframe" />
+      <Button layoutX="25.0" layoutY="165.0" mnemonicParsing="false" text="Rooms available" />
+      <Label layoutX="201.0" layoutY="170.0" text="How many rooms are available in the selecte time" />
+      <Button layoutX="25.0" layoutY="222.0" mnemonicParsing="false" text="Weekly report" />
+      <Label layoutX="204.0" layoutY="235.0" text="How many rooms were booked during the week usw" />
+      <Button layoutX="25.0" layoutY="276.0" mnemonicParsing="false" text="Daily report" />
+      <Button layoutX="25.0" layoutY="328.0" mnemonicParsing="false" text="Daily checkout report" />
+      <Label layoutX="224.0" layoutY="281.0" text="Special wishes of guests" />
+      <Label layoutX="225.0" layoutY="333.0" text="Show how many rooms will be free today " />
+      <Button layoutX="25.0" layoutY="66.0" mnemonicParsing="false" text="Overall booking info" />
+      <Label layoutX="205.0" layoutY="71.0" text="Show booking info for a hotel in selected time" />
+      <Button layoutX="515.0" layoutY="355.0" mnemonicParsing="false" onAction="#backBtnClicked" text="Back" />
+      <Label layoutX="540.0" layoutY="71.0" text="Lucas" />
+      <Label layoutX="540.0" layoutY="117.0" text="Lucas" />
+      <Label layoutX="540.0" layoutY="170.0" text="Lucas" />
+      <Label layoutX="540.0" layoutY="235.0" text="Lucas" />
+      <Label layoutX="551.0" layoutY="281.0" text="Max" />
+      <Label layoutX="551.0" layoutY="320.0" text="Max" />
+   </children>
+</AnchorPane>
