@@ -38,7 +38,6 @@ public class HotelController {
 		hotelDescriptionLabel.setText(model.getHotelDescrModel());
 	}
 
-	
 	public void displayAllHotels(ActionEvent event) {
 		System.out.println("controller: display all hotels ");
 		
