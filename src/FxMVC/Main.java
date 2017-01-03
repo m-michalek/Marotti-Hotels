@@ -19,13 +19,6 @@ public class Main extends Application {
 		
 		try {
 			
-//			BackgroundImage myBI= new BackgroundImage(new Image("background.jpg",32,32,false,true),
-//			        BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-//			          BackgroundSize.DEFAULT);
-//			//then you set to your node
-		//	myContainer.setBackground(new Background(myBI));
-			
-			
 			Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
 			primaryStage.setTitle("Welcome to Marotti Hotels");
 			primaryStage.setScene(new Scene (root, 600, 400));

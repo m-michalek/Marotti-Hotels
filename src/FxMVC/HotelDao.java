@@ -10,8 +10,8 @@ import java.util.List;
 public class HotelDao {
 
 	private static OracleDsSingleton ds = OracleDsSingleton.getInstance();
-	//Holt Server- Logindaten
-	
+	// Holt Server- Logindaten
+
 	public static HotelDto getHotelInfo(String hotelname) {
 		HotelDto hotel = null;
 
@@ -35,8 +35,6 @@ public class HotelDao {
 				hotel.setHotel_id(rset.getInt("hotel_id"));
 			}
 
-			System.out.println("Done!");
-
 			conn.close();
 
 		} catch (SQLException esql) {
@@ -53,8 +51,7 @@ public class HotelDao {
 		return hotel;
 	}
 
-	public static int checkRoomsAvailable(String hotel, String checkInString, String checkOutString,
-			int rcategoryID) {
+	public static int checkRoomsAvailable(String hotel, String checkInString, String checkOutString, String roomCategoryString) {
 
 		int roomsinHotelInt = 0;
 		int roomsBookedInt = 0;
@@ -64,22 +61,17 @@ public class HotelDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 
-		String selectStatement = "select count(r.room_id) "
-				+ "from room r "
-				+ "join hotel h "
-				+ "on h.hotel_id=r.hotel_id "
-				+ "join rcategory rc "
-				+ "on rc.rcategory_id=r.rcategory_id "
-				+ "where h.hotel_name=? "
-				+ "and rc.rcategory_id=? ";
+		String selectStatement = "select count(r.room_id) " + "from room r " + "join hotel h "
+				+ "on h.hotel_id=r.hotel_id " + "join rcategory rc " + "on rc.rcategory_id=r.rcategory_id "
+				+ "where h.hotel_name=? " + "and rc.rcategory_name=? ";
 
 		try {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(selectStatement.toString());
 
 			pstmt.setString(1, hotel);
-			pstmt.setInt(2, rcategoryID);
-			
+			pstmt.setString(2, roomCategoryString);
+
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
@@ -119,7 +111,7 @@ public class HotelDao {
 			pstmt1.setString(1, hotel);
 			pstmt1.setString(2, checkInString);
 			pstmt1.setString(3, checkOutString);
-			pstmt1.setInt(4, rcategoryID);
+			pstmt1.setString(4, roomCategoryString);
 
 			rset1 = pstmt1.executeQuery();
 

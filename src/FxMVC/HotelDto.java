@@ -38,5 +38,4 @@ public class HotelDto {
 	public void setHotel_description(String hotel_description) {
 		this.hotel_description = hotel_description;
 	}
-
 }

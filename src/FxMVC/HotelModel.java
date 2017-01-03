@@ -1,6 +1,5 @@
 package FxMVC;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public class HotelModel {
@@ -24,9 +23,9 @@ public class HotelModel {
 
 	}
 
-	public void checkAvailability(String hotel, String checkInString, String checkOutString, int rcategoryID){
+	public void checkAvailability(String hotel, String checkInString, String checkOutString, String roomCategoryString){
 		
-		int roomsAvailableInHotel = HotelDao.checkRoomsAvailable(hotel, checkInString, checkOutString, rcategoryID);
+		int roomsAvailableInHotel = HotelDao.checkRoomsAvailable(hotel, checkInString, checkOutString, roomCategoryString);
 		this.roomsAvailable = roomsAvailableInHotel;
 		
 	}

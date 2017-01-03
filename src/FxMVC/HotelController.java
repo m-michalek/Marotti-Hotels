@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import fxTest.AlertBox;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -46,17 +47,15 @@ public class HotelController implements Initializable {
 	@FXML
 	private ImageView hotelImage;
 	@FXML
-	private Button button;
-	@FXML
 	private ImageView secondImageView;
-	@FXML
-	private Label label;
 	@FXML
 	private ComboBox<String> roomCategory;
 	@FXML
 	private ComboBox<String> hotelComboBox;
 	@FXML
 	private Label roomsAvailableLbl;
+	@FXML
+	private Button checkButton;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -64,7 +63,7 @@ public class HotelController implements Initializable {
 		// try to get room categories from the database
 
 		roomCategory.getItems().removeAll(roomCategory.getItems());
-		roomCategory.getItems().addAll("Single room", "Double room", "Suite");
+		roomCategory.getItems().addAll("Single room", "Double room");
 
 		hotelComboBox.getItems().removeAll(hotelComboBox.getItems());
 		hotelComboBox.getItems().addAll("Marotti Berlin", "Marotti München");
@@ -76,48 +75,53 @@ public class HotelController implements Initializable {
 		int rcategoryID = 0;
 
 		System.out.println("checking out availability of hotel with the dates");
+
 		LocalDate checkInAsDate = checkInDate.getValue();
-		String checkInString = checkInAsDate.format(DateTimeFormatter.ofPattern("dd.MM.yy"));
-
-		LocalDate checkOutAsDate = checkOutDate.getValue();
-		String checkOutString = checkOutAsDate.format(DateTimeFormatter.ofPattern("dd.MM.yy"));
-
-		String roomCategoryString = roomCategory.getValue();
-
-		switch (roomCategoryString) {
-			case "Single room":
-				rcategoryID = 1;
-				break;
-			case "Double room":
-				rcategoryID = 2;
-				break;
+		String checkInString = null;
+		try {
+			checkInString = checkInAsDate.format(DateTimeFormatter.ofPattern("dd.MM.yy"));
+		} catch (NullPointerException e) {
+			System.out.println("Checking availability without check in date");
 		}
 
+		LocalDate checkOutAsDate = checkOutDate.getValue();
+		String checkOutString = null;
+		try {
+			checkOutString = checkOutAsDate.format(DateTimeFormatter.ofPattern("dd.MM.yy"));
+		} catch (NullPointerException e1) {
+			System.out.println("Checking availability without check out date");
+		}
+
+		String roomCategoryString = roomCategory.getValue();
 		String hotel = hotelComboBox.getValue();
 
-		System.out.println("Check between the dates from " + checkInString + " to " + checkOutString);
-		System.out.println("for the room type: " + roomCategory.getValue());
-		System.out.println("room category id:" + rcategoryID);
-		System.out.println("in a hotel: " +  hotel);
+		if (roomCategoryString != null && hotel != null) {
+			System.out.println("Check between the dates from " + checkInString + " to " + checkOutString);
+			System.out.println("for the room type: " + roomCategoryString);
+			System.out.println("in a hotel: " + hotel);
 
-		model.checkAvailability(hotel, checkInString, checkOutString, rcategoryID);
+			try {
+				model.checkAvailability(hotel, checkInString, checkOutString, roomCategoryString);
+			} catch (NullPointerException ex) {
+				ex.printStackTrace();
+			}
 
-		roomsAvailableLbl.setText("Rooms in a hotel: " + model.getRoomsAvailableModel());
-
+			roomsAvailableLbl.setText("Rooms in a hotel: " + model.getRoomsAvailableModel());
+		} else {
+			
+			AlertBox.display("Error!", "Please choose room category and hotel");
+		}
 	}
 
 	public void displayAllHotels(ActionEvent event) {
 
 		hotelListView.getItems().clear();
-		System.out.println("controller: display all hotels ");
 
 		List<String> hotelNames = new ArrayList<String>();
 		List<HotelDto> listOfHotels = model.dislayAllHotels();
 
 		for (HotelDto item : listOfHotels) {
 			String name = item.getHotel_name();
-
-			System.out.println(name);
 			hotelNames.add(name);
 		}
 
@@ -141,7 +145,6 @@ public class HotelController implements Initializable {
 	}
 
 	public void backBtnClicked(ActionEvent event) {
-		System.out.println("back button clicked");
 		try {
 			Parent home_page_parent = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
 			Scene home_page_scene = new Scene(home_page_parent);
@@ -153,5 +156,4 @@ public class HotelController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-
 }
