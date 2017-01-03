@@ -2,15 +2,29 @@ package FxMVC;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.stage.Stage;
 
 public class Main extends Application {
+	
 	@Override
 	public void start(Stage primaryStage) {
 		
 		try {
+			
+//			BackgroundImage myBI= new BackgroundImage(new Image("background.jpg",32,32,false,true),
+//			        BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+//			          BackgroundSize.DEFAULT);
+//			//then you set to your node
+		//	myContainer.setBackground(new Background(myBI));
+			
 			
 			Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
 			primaryStage.setTitle("Welcome to Marotti Hotels");

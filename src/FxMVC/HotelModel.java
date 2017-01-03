@@ -1,11 +1,14 @@
 package FxMVC;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class HotelModel {
 
 	private String hotelNameModel;
 	private String hotelDescrModel;
+	private int hotelIdModel;
+	private int roomsAvailable;
 
 	public void displayHotelInfo(String hotelName) {
 
@@ -17,13 +20,21 @@ public class HotelModel {
 		HotelDto hotel = HotelDao.getHotelInfo(hotelName);
 		this.hotelDescrModel = hotel.getHotel_description();
 		this.hotelNameModel = hotel.getHotel_name();
+		this.hotelIdModel = hotel.getHotel_id();
 
 	}
 
+	public void checkAvailability(String hotel, String checkInString, String checkOutString, int rcategoryID){
+		
+		int roomsAvailableInHotel = HotelDao.checkRoomsAvailable(hotel, checkInString, checkOutString, rcategoryID);
+		this.roomsAvailable = roomsAvailableInHotel;
+		
+	}
+	
+	
 	public List<HotelDto> dislayAllHotels() {
 
 		List<HotelDto> hotelList = HotelDao.displayAllHotels();
-
 		return hotelList;
 		
 	}
@@ -34,5 +45,13 @@ public class HotelModel {
 
 	public String getHotelDescrModel() {
 		return hotelDescrModel;
+	}
+	
+	public int getHotelIdModel() {
+		return hotelIdModel;
+	}
+	
+	public int getRoomsAvailableModel() {
+		return roomsAvailable;
 	}
 }

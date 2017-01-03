@@ -4,9 +4,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FxMVC.CustomerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400" prefWidth="600" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FxMVC.CustomerController">
    <children>
-      <Button layoutX="37.0" layoutY="57.0" mnemonicParsing="false" text="Search for a hotel" />
+      <Button layoutX="37.0" layoutY="57.0" mnemonicParsing="false" onAction="#showHotelView" text="Search for a hotel" />
       <Button layoutX="40.0" layoutY="117.0" mnemonicParsing="false" text="Book a hotel" />
       <Label layoutX="185.0" layoutY="62.0" text="Display info about all hotels, with info about room categories" />
       <Label layoutX="193.0" layoutY="122.0" text="Booking with Standort Auswahl, date and prices" />

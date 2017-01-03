@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FxMVC.HotelController">
-   <children>
-      <Button fx:id="searchBtn" alignment="CENTER" layoutX="25.0" layoutY="260.0" mnemonicParsing="false" onAction="#searchForHotel" text="Search for a hotel" />
-      <Button fx:id="backBtn" alignment="CENTER" layoutX="523.0" layoutY="347.0" mnemonicParsing="false" onAction="#backBtnClicked" text="Back" />
-      <Label layoutX="43.0" layoutY="29.0" text="Here you can find information about our hotels" />
-      <Label layoutX="22.0" layoutY="115.0" text="Type here hotel name" />
-      <TextField fx:id="hotelTextField" layoutX="172.0" layoutY="110.0" promptText="Marotti Berlin" />
-      <Label fx:id="hotelNameLabel" layoutX="25.0" layoutY="161.0" text="Hotel name" />
-      <Label fx:id="hotelDescriptionLabel" layoutX="25.0" layoutY="192.0" text="Hotel description " />
-      <Button layoutX="186.0" layoutY="260.0" mnemonicParsing="false" onAction="#displayAllHotels" text="Display all" />
-      <ListView fx:id="hotelListView" layoutX="372.0" layoutY="94.0" prefHeight="200.0" prefWidth="200.0" />
-   </children>
+<AnchorPane prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FxMVC.HotelController">
+	<children>
+		<Button fx:id="backBtn" alignment="CENTER" layoutX="723.0" layoutY="539.0" mnemonicParsing="false" onAction="#backBtnClicked" text="Back" />
+		<Label layoutX="172.0" layoutY="14.0" text="Here you can find information about our hotels" />
+		<Label fx:id="hotelNameLabel" layoutX="541.0" layoutY="251.0" text="Hotel name" />
+		<Label fx:id="hotelDescriptionLabel" layoutX="542.0" layoutY="281.0" text="Hotel description " />
+		<Button layoutX="553.0" layoutY="50.0" mnemonicParsing="false" onAction="#displayAllHotels" text="Display all hotels" />
+		<ListView fx:id="hotelListView" layoutX="529.0" layoutY="108.0" prefHeight="114.0" prefWidth="200.0" />
+      <Label layoutX="21.0" layoutY="64.0" text="Check in date" />
+      <Label layoutX="21.0" layoutY="94.0" text="Check out date" />
+      <Button fx:id="button" alignment="CENTER" layoutX="68.0" layoutY="245.0" mnemonicParsing="false" onAction="#checkAvailability" text="Check availability for the specific hotel" />
+      <DatePicker fx:id="checkInDate" layoutX="121.0" layoutY="60.0" />
+      <DatePicker fx:id="checkOutDate" layoutX="121.0" layoutY="98.0" />
+      <ComboBox fx:id="roomCategory" layoutX="164.0" layoutY="151.0" prefHeight="27.0" prefWidth="200.0" promptText="single/double/..." />
+      <Label fx:id="hotelNameLabel1" layoutX="20.0" layoutY="157.0" text="Room category" />
+      <Label fx:id="roomsAvailableLbl" layoutX="51.0" layoutY="323.0" text="Rooms available: " />
+      <ComboBox fx:id="hotelComboBox" layoutX="164.0" layoutY="192.0" prefHeight="27.0" prefWidth="200.0" promptText="Berlin, München..." />
+      <Label fx:id="hotelNameLabel11" layoutX="21.0" layoutY="196.0" text="Choose a hotel" />
+	</children>
 </AnchorPane>
