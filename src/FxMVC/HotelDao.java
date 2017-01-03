@@ -10,7 +10,8 @@ import java.util.List;
 public class HotelDao {
 
 	private static OracleDsSingleton ds = OracleDsSingleton.getInstance();
-
+	//Holt Server- Logindaten
+	
 	public static HotelDto getHotelInfo(String hotelname) {
 		HotelDto hotel = null;
 
