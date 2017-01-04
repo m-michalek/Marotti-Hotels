@@ -31,6 +31,9 @@ public class HotelController implements Initializable {
 
 	HotelModel model = new HotelModel();
 	int hotelID;
+	String checkInString = null, checkOutString = null;
+	String roomCategoryString, hotel;
+	LocalDate checkInAsDate, checkOutAsDate;
 
 	@FXML
 	private TextField hotelTextField;
@@ -39,7 +42,11 @@ public class HotelController implements Initializable {
 	@FXML
 	private Label hotelDescriptionLabel;
 	@FXML
+	private Label priceLbl;
+	@FXML
 	private ListView<String> hotelListView;
+	@FXML
+	private ListView<String> priceList;
 	@FXML
 	private DatePicker checkInDate;
 	@FXML
@@ -56,6 +63,8 @@ public class HotelController implements Initializable {
 	private Label roomsAvailableLbl;
 	@FXML
 	private Button checkButton;
+	@FXML
+	private Button bookBtn;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -73,27 +82,23 @@ public class HotelController implements Initializable {
 	public void checkAvailability(ActionEvent event) {
 
 		int rcategoryID = 0;
-
 		System.out.println("checking out availability of hotel with the dates");
-
-		LocalDate checkInAsDate = checkInDate.getValue();
-		String checkInString = null;
+		checkInAsDate = checkInDate.getValue();
 		try {
 			checkInString = checkInAsDate.format(DateTimeFormatter.ofPattern("dd.MM.yy"));
 		} catch (NullPointerException e) {
 			System.out.println("Checking availability without check in date");
 		}
 
-		LocalDate checkOutAsDate = checkOutDate.getValue();
-		String checkOutString = null;
+		checkOutAsDate = checkOutDate.getValue();
 		try {
 			checkOutString = checkOutAsDate.format(DateTimeFormatter.ofPattern("dd.MM.yy"));
 		} catch (NullPointerException e1) {
 			System.out.println("Checking availability without check out date");
 		}
 
-		String roomCategoryString = roomCategory.getValue();
-		String hotel = hotelComboBox.getValue();
+		roomCategoryString = roomCategory.getValue();
+		hotel = hotelComboBox.getValue();
 
 		if (roomCategoryString != null && hotel != null) {
 			System.out.println("Check between the dates from " + checkInString + " to " + checkOutString);
@@ -107,8 +112,9 @@ public class HotelController implements Initializable {
 			}
 
 			roomsAvailableLbl.setText("Rooms in a hotel: " + model.getRoomsAvailableModel());
+
 		} else {
-			
+
 			AlertBox.display("Error!", "Please choose room category and hotel");
 		}
 	}
@@ -126,6 +132,10 @@ public class HotelController implements Initializable {
 		}
 
 		hotelListView.getItems().addAll(hotelNames);
+		displayInfoAboutHotel();
+	}
+
+	private void displayInfoAboutHotel() {
 
 		hotelListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 
@@ -138,15 +148,29 @@ public class HotelController implements Initializable {
 
 				hotelNameLabel.setText(model.getHotelNameModel());
 				hotelDescriptionLabel.setText(model.getHotelDescrModel());
-				hotelID = model.getHotelIdModel();
-				System.out.println("hotel id: " + hotelID);
+
+				// List<RoomCategoryAndPrice> roomCategories = new
+				// ArrayList<RoomCategoryAndPrice>();
+				//
+				// for (HotelDto item : listOfHotels) {
+				// RoomCategoryAndPrice roomCategory = (RoomCategoryAndPrice)
+				// item.getRoomCatPrice();
+				// System.out.println("room category: " +
+				// roomCategory.toString());
+				// // String roomCategory = item.getHotel_name();
+				// roomCategories.add(roomCategory);
+				// }
+
+				// priceList.getItems().add(roomCategories);
+
+				// priceLbl.setText("" + model.getPriceModel());
 			}
 		});
 	}
 
 	public void backBtnClicked(ActionEvent event) {
 		try {
-			Parent home_page_parent = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
+			Parent home_page_parent = FXMLLoader.load(getClass().getResource("CustomerView.fxml"));
 			Scene home_page_scene = new Scene(home_page_parent);
 			Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			app_stage.setScene(home_page_scene);
@@ -154,6 +178,43 @@ public class HotelController implements Initializable {
 
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+
+	public void bookBtnClicked(ActionEvent event) {
+
+		roomCategoryString = roomCategory.getValue();
+		hotel = hotelComboBox.getValue();
+
+		checkOutAsDate = checkOutDate.getValue();
+		try {
+			checkOutString = checkOutAsDate.format(DateTimeFormatter.ofPattern("dd.MM.yy"));
+		} catch (NullPointerException e1) {
+			System.out.println("no check out date");
+		}
+
+		checkInAsDate = checkInDate.getValue();
+		try {
+			checkInString = checkInAsDate.format(DateTimeFormatter.ofPattern("dd.MM.yy"));
+		} catch (NullPointerException e) {
+			System.out.println("no check in date");
+		}
+
+		if (roomCategoryString != null && hotel != null && checkInString != null && checkOutString != null) {
+
+			try {
+				Parent home_page_parent = FXMLLoader.load(getClass().getResource("BookView.fxml"));
+				Scene home_page_scene = new Scene(home_page_parent);
+				Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+				app_stage.setScene(home_page_scene);
+				app_stage.show();
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		} else {
+			AlertBox.display("Error!", "Please choose room category, hotel, check in and check out dates");
 		}
 	}
 }

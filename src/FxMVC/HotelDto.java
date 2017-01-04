@@ -1,5 +1,7 @@
 package FxMVC;
 
+import java.util.List;
+
 public class HotelDto {
 	
 	private String hotel_name;
@@ -7,7 +9,21 @@ public class HotelDto {
 	private int hotel_id;
 	private int numberOfRoomsInHotel;
 	private int roomsBooked;
+	private int price;
+	private List<RoomCategoryAndPrice> roomCatPrice;
 	
+	public List<RoomCategoryAndPrice> getRoomCatPrice() {
+		return roomCatPrice;
+	}
+	public void setRoomCatPrice(List<RoomCategoryAndPrice> roomCatPrice) {
+		this.roomCatPrice = roomCatPrice;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
 	public int getRoomsBooked() {
 		return roomsBooked;
 	}

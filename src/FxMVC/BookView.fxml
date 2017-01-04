@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FxMVC.BookController">
+   <children>
+      <Button fx:id="backBtn" layoutX="501.0" layoutY="344.0" mnemonicParsing="false" onAction="#backBtnClicked" text="Back" />
+      <Button fx:id="bookNowBtn" layoutX="221.0" layoutY="263.0" mnemonicParsing="false" text="Book now" />
+      <Label fx:id="label" layoutX="196.0" layoutY="131.0" text="Please enter your name" />
+      <TextField fx:id="textField" layoutX="185.0" layoutY="163.0" />
+   </children>
+</AnchorPane>

@@ -10,16 +10,20 @@ import java.util.List;
 public class HotelDao {
 
 	private static OracleDsSingleton ds = OracleDsSingleton.getInstance();
-	// Holt Server- Logindaten
 
 	public static HotelDto getHotelInfo(String hotelname) {
+
 		HotelDto hotel = null;
 
+		List<HotelDto> hotelInfoList = new ArrayList<HotelDto>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 
-		String selectStatement = "select * from hotel where hotel_name=?";
+		String selectStatement = "select distinct h.hotel_id, h.hotel_description as descr, "
+				+ "h.hotel_name as hotel, rc.rcategory_name, rc.price as price, rc.room_description " + "from hotel h "
+				+ " join ROOM r on r.HOTEL_ID = h.HOTEL_ID join rcategory rc "
+				+ "on rc.rcategory_id=r.rcategory_id where hotel_name=?";
 
 		try {
 			conn = ds.getConnection();
@@ -29,12 +33,25 @@ public class HotelDao {
 			pstmt.setString(1, hotelname);
 			rset = pstmt.executeQuery();
 
+			// List priceList = new ArrayList();
+
 			while (rset.next()) {
-				hotel.setHotel_description(rset.getString("hotel_description"));
-				hotel.setHotel_name(rset.getString("hotel_name"));
-				hotel.setHotel_id(rset.getInt("hotel_id"));
+				// HotelDto hotelToList = new HotelDto();
+				//
+				// hotelToList.setHotel_description(rset.getString("descr"));
+				// hotelToList.setHotel_name(rset.getString("hotel"));
+				// hotelToList.setPrice(rset.getInt("price"));
+				// hotelInfoList.add(hotelToList);
+
+				hotel.setHotel_description(rset.getString("descr"));
+				hotel.setHotel_name(rset.getString("hotel"));
+				hotel.setPrice(rset.getInt("price"));
+				int price = rset.getInt("price");
+				// priceList.add(price);
+				// priceList.add(rset.getInt("price"));
 			}
 
+			// System.out.println("here should be 2: " + priceList.size());
 			conn.close();
 
 		} catch (SQLException esql) {
@@ -51,7 +68,66 @@ public class HotelDao {
 		return hotel;
 	}
 
-	public static int checkRoomsAvailable(String hotel, String checkInString, String checkOutString, String roomCategoryString) {
+	// does not work properly yet
+	public static List<HotelDto> getHotelInfoNew(String hotelname) {
+
+		HotelDto hotel = null;
+
+		List<HotelDto> hotelInfoList = new ArrayList<HotelDto>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String selectStatement = "select distinct h.hotel_id, h.hotel_description as descr, "
+				+ "h.hotel_name as hotel, rc.rcategory_name, rc.price as price, rc.room_description " + "from hotel h "
+				+ " join ROOM r on r.HOTEL_ID = h.HOTEL_ID join rcategory rc "
+				+ "on rc.rcategory_id=r.rcategory_id where hotel_name=?";
+
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(selectStatement.toString());
+			hotel = new HotelDto();
+
+			pstmt.setString(1, hotelname);
+			rset = pstmt.executeQuery();
+
+			// List priceList = new ArrayList();
+
+			while (rset.next()) {
+				HotelDto hotelToList = new HotelDto();
+
+				hotelToList.setHotel_description(rset.getString("descr"));
+				hotelToList.setHotel_name(rset.getString("hotel"));
+				hotelToList.setPrice(rset.getInt("price"));
+				hotelInfoList.add(hotelToList);
+
+				// hotel.setHotel_description(rset.getString("descr"));
+				// hotel.setHotel_name(rset.getString("hotel"));
+				// hotel.setPrice(rset.getInt("price"));
+				// int price = rset.getInt("price");
+				// priceList.add(price);
+				// priceList.add(rset.getInt("price"));
+			}
+
+			// System.out.println("here should be 2: " + priceList.size());
+			conn.close();
+
+		} catch (SQLException esql) {
+			esql.printStackTrace();
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					System.out.println("Connection closed error");
+				}
+			}
+		}
+		return hotelInfoList;
+	}
+
+	public static int checkRoomsAvailable(String hotel, String checkInString, String checkOutString,
+			String roomCategoryString) {
 
 		int roomsinHotelInt = 0;
 		int roomsBookedInt = 0;
@@ -102,7 +178,7 @@ public class HotelDao {
 				+ "join booking b on rb.booking_id=b.booking_id join room r on r.room_id=rb.room_id "
 				+ "join hotel h on h.hotel_id=r.hotel_id join rcategory rc on "
 				+ "rc.rcategory_id=r.rcategory_id where h.hotel_name = ? and "
-				+ "(b.check_in_date between ? and ?) and rc.rcategory_id=?";
+				+ "(b.check_in_date between ? and ?) and rc.rcategory_name=?";
 
 		try {
 			conn1 = ds.getConnection();
@@ -155,7 +231,7 @@ public class HotelDao {
 
 			while (rset.next()) {
 				HotelDto hotel = new HotelDto();
-				hotel.setHotel_description(rset.getString("hotel_description"));
+				// hotel.setHotel_description(rset.getString("hotel_description"));
 				hotel.setHotel_name(rset.getString("hotel_name"));
 				list.add(hotel);
 			}
