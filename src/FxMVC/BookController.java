@@ -1,10 +1,13 @@
 package FxMVC;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,14 +15,21 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class BookController {
+public class BookController implements Initializable {
+	
+	BookingModel bookingModel = new BookingModel();
 	
 	@FXML
 	private TextField textField;
 	@FXML
 	private Label label;
 	
-	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		String checkIn = bookingModel.getCheckIn();
+		bookingModel.toString();
+		System.out.println("two: " + checkIn);
+	}
 	
 	public void backBtnClicked(ActionEvent event) {
 		try {
@@ -33,5 +43,9 @@ public class BookController {
 			e.printStackTrace();
 		}
 	}
+
+
+
+	
 
 }

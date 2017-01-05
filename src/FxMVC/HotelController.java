@@ -30,6 +30,7 @@ import javafx.stage.Stage;
 public class HotelController implements Initializable {
 
 	HotelModel model = new HotelModel();
+	
 	int hotelID;
 	String checkInString = null, checkOutString = null;
 	String roomCategoryString, hotel;
@@ -182,7 +183,7 @@ public class HotelController implements Initializable {
 	}
 
 	public void bookBtnClicked(ActionEvent event) {
-
+		
 		roomCategoryString = roomCategory.getValue();
 		hotel = hotelComboBox.getValue();
 
@@ -201,7 +202,17 @@ public class HotelController implements Initializable {
 		}
 
 		if (roomCategoryString != null && hotel != null && checkInString != null && checkOutString != null) {
-
+			
+			BookingModel bookingModel = new BookingModel(hotel, roomCategoryString, checkInString, checkOutString);
+			bookingModel.toString();
+//			
+//			bookingModel.setHotel(hotel);
+//			bookingModel.setRoomCategory(roomCategory.toString());
+//			bookingModel.setCheckIn(checkInString);
+			
+			System.out.println("one: " + checkInString);
+			bookingModel.setCheckOut(checkOutString);
+			
 			try {
 				Parent home_page_parent = FXMLLoader.load(getClass().getResource("BookView.fxml"));
 				Scene home_page_scene = new Scene(home_page_parent);
