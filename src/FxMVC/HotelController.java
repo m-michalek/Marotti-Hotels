@@ -125,6 +125,7 @@ public class HotelController implements Initializable {
 		hotelListView.getItems().clear();
 
 		List<String> hotelNames = new ArrayList<String>();
+//		
 		List<HotelDto> listOfHotels = model.dislayAllHotels();
 
 		for (HotelDto item : listOfHotels) {
