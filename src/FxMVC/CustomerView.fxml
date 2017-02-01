@@ -7,19 +7,16 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400" prefWidth="600" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FxMVC.CustomerController">
    <children>
       <Button layoutX="37.0" layoutY="57.0" mnemonicParsing="false" onAction="#showHotelView" text="Search for a hotel" />
-      <Button layoutX="40.0" layoutY="117.0" mnemonicParsing="false" text="Book a hotel" />
+      <Button fx:id="addCustomerBtn" layoutX="40.0" layoutY="117.0" mnemonicParsing="false" onAction="#addCustomerBtnClicked" text="Add a customer" />
       <Label layoutX="185.0" layoutY="62.0" text="Display info about all hotels, with info about room categories" />
-      <Label layoutX="193.0" layoutY="122.0" text="Booking with Standort Auswahl, date and prices" />
       <Label layoutX="254.0" layoutY="25.0" text="Customer view" />
       <Button layoutX="40.0" layoutY="187.0" mnemonicParsing="false" text="Get the current receipt" />
       <Button layoutX="40.0" layoutY="246.0" mnemonicParsing="false" text="Get info about all my bookings" />
       <Label layoutX="212.0" layoutY="192.0" text="Info about this exact booking" />
       <Label layoutX="257.0" layoutY="251.0" prefWidth="118.0" text="My booking history" />
-      <Label layoutX="193.0" layoutY="144.0" text=" whether the rooms are free" />
       <Button layoutX="515.0" layoutY="353.0" mnemonicParsing="false" onAction="#backBtnClicked" text="Back" />
       <Label layoutX="546.0" layoutY="251.0" text="Max" />
       <Label layoutX="544.0" layoutY="192.0" text="Max" />
-      <Label layoutX="543.0" layoutY="122.0" text="Olga" />
-      <Label layoutX="543.0" layoutY="76.0" text="Olga" />
+      <Button fx:id="changeCustAddressBtn" layoutX="187.0" layoutY="117.0" mnemonicParsing="false" onAction="#changeCustAdressBtnClicked" text="Change customer address" />
    </children>
 </AnchorPane>

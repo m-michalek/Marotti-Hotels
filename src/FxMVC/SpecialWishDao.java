@@ -1,40 +1,32 @@
-package HotelDaoPackage;
+package FxMVC;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import Singleton.OracleDsSingleton;
-
-public class HotelDao {
+public class SpecialWishDao {
 
 	private static OracleDsSingleton ds = OracleDsSingleton.getInstance();
 
-	public static HotelDto getAllHotels() {
-
-		HotelDto hotel = null;
+	public static void deleteSWCategory(int catID) {
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 
-		StringBuffer selectHotel = new StringBuffer();
-
-		selectHotel.append("select * from hotel");
+		String selectStatement = "delete specialwishescategory where special_wish_id=?";
 
 		try {
 			conn = ds.getConnection();
-			pstmt = conn.prepareStatement(selectHotel.toString());
-			hotel = new HotelDto();
+			pstmt = conn.prepareStatement(selectStatement);
+			pstmt.setInt(1, catID);
 
 			rset = pstmt.executeQuery();
 
-			while (rset.next()) {
-				hotel.setHotelName(rset.getString("hotel_name"));
-				hotel.setHotelDescription(rset.getString("hotel_description"));
-			}
 			conn.close();
+
+			System.out.println("special wish category deleted!");
 
 		} catch (SQLException esql) {
 			esql.printStackTrace();
@@ -43,10 +35,9 @@ public class HotelDao {
 				try {
 					conn.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					System.out.println("Connection close error");
 				}
 			}
 		}
-		return hotel;
 	}
 }

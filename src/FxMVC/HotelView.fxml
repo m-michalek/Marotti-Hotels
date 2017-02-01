@@ -26,11 +26,9 @@
       <ComboBox fx:id="hotelComboBox" layoutX="582.0" layoutY="198.0" prefHeight="27.0" prefWidth="200.0" promptText="Berlin, München..." />
       <Label fx:id="hotelNameLabel11" layoutX="472.0" layoutY="189.0" text="Choose a hotel" />
       <Button fx:id="bookBtn" alignment="CENTER" layoutX="525.0" layoutY="416.0" mnemonicParsing="false" onAction="#bookBtnClicked" prefHeight="27.0" prefWidth="200.0" text="Book a hotel" />
-      <Label layoutX="23.0" layoutY="407.0" text="Room categories" />
-      <Label layoutX="22.0" layoutY="434.0" text="Price for the room" />
-      <Label fx:id="hotelNameLabel3" layoutX="20.0" layoutY="249.0" text="Hotel name:" />
+      <Label fx:id="hotelNameLabel3" layoutX="20.0" layoutY="249.0" text="Name of the hotel" />
       <Label layoutX="20.0" layoutY="275.0" text="Description:" />
-      <Label fx:id="rcategoryLbl" layoutX="135.0" layoutY="408.0" prefHeight="17.0" prefWidth="154.0" text="   ..." />
-      <Label fx:id="priceLbl" layoutX="144.0" layoutY="434.0" prefHeight="17.0" prefWidth="154.0" text="   ---" />
+      <Label layoutX="20.0" layoutY="378.0" text="Address:" />
+      <Label fx:id="hotelAddress" layoutX="120.0" layoutY="378.0" prefHeight="17.0" prefWidth="154.0" text="   ..." />
 	</children>
 </AnchorPane>

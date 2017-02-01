@@ -14,16 +14,34 @@ import javafx.stage.Stage;
 
 public class CustomerController {
 
-	HotelModel model = new HotelModel();
+	public void addCustomerBtnClicked(ActionEvent event) {
 
-	@FXML
-	private TextField hotelTextField;
-	@FXML
-	private Label hotelNameLabel;
-	@FXML
-	private Label hotelDescriptionLabel;
-	@FXML
-	private ListView hotelListView;
+		try {
+			Parent home_page_parent = FXMLLoader.load(getClass().getResource("AddCustomer.fxml"));
+			Scene home_page_scene = new Scene(home_page_parent);
+			Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			app_stage.setScene(home_page_scene);
+			app_stage.show();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void changeCustAdressBtnClicked(ActionEvent event) {
+
+		try {
+			Parent home_page_parent = FXMLLoader.load(getClass().getResource("UpdateCustInfoView.fxml"));
+			Scene home_page_scene = new Scene(home_page_parent);
+			Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			app_stage.setScene(home_page_scene);
+			app_stage.show();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void showHotelView(ActionEvent event) {
 		try {

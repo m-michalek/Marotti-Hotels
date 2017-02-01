@@ -17,7 +17,7 @@
       <Button layoutX="25.0" layoutY="328.0" mnemonicParsing="false" text="Daily checkout report" />
       <Label layoutX="224.0" layoutY="281.0" text="Special wishes of guests" />
       <Label layoutX="225.0" layoutY="333.0" text="Show how many rooms will be free today " />
-      <Button layoutX="25.0" layoutY="66.0" mnemonicParsing="false" text="Overall booking info" />
+      <Button layoutX="25.0" layoutY="66.0" mnemonicParsing="false" onAction="#bookingInfoBtnClicked" text="Overall booking info" />
       <Label layoutX="205.0" layoutY="71.0" text="Show booking info for a hotel in selected time" />
       <Button layoutX="515.0" layoutY="355.0" mnemonicParsing="false" onAction="#backBtnClicked" text="Back" />
       <Label layoutX="540.0" layoutY="71.0" text="Lucas" />
@@ -26,5 +26,6 @@
       <Label layoutX="540.0" layoutY="235.0" text="Lucas" />
       <Label layoutX="551.0" layoutY="281.0" text="Max" />
       <Label layoutX="551.0" layoutY="320.0" text="Max" />
+      <Button fx:id="deleteSWCategoryBtn" layoutX="201.0" layoutY="355.0" mnemonicParsing="false" onAction="#deleteSWCategoryBtnClicked" text="Delete special wish category" />
    </children>
 </AnchorPane>

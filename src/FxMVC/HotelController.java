@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import fxTest.AlertBox;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -30,7 +29,7 @@ import javafx.stage.Stage;
 public class HotelController implements Initializable {
 
 	HotelModel model = new HotelModel();
-	
+
 	int hotelID;
 	String checkInString = null, checkOutString = null;
 	String roomCategoryString, hotel;
@@ -53,8 +52,6 @@ public class HotelController implements Initializable {
 	@FXML
 	private DatePicker checkOutDate;
 	@FXML
-	private ImageView hotelImage;
-	@FXML
 	private ImageView secondImageView;
 	@FXML
 	private ComboBox<String> roomCategory;
@@ -70,13 +67,12 @@ public class HotelController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		// try to get room categories from the database
-
 		roomCategory.getItems().removeAll(roomCategory.getItems());
-		roomCategory.getItems().addAll("Single room", "Double room");
+		roomCategory.getItems().addAll("Single room", "Double room", "Business Suite", "President Suite", "King Suite");
 
 		hotelComboBox.getItems().removeAll(hotelComboBox.getItems());
-		hotelComboBox.getItems().addAll("Marotti Berlin", "Marotti München");
+		hotelComboBox.getItems().addAll("Marotti Berlin", "Marotti Dortmund", "Marotti Hamburg", "Marotti Dresden",
+				"Marotti Leipzig");
 
 	}
 
@@ -125,7 +121,6 @@ public class HotelController implements Initializable {
 		hotelListView.getItems().clear();
 
 		List<String> hotelNames = new ArrayList<String>();
-//		
 		List<HotelDto> listOfHotels = model.dislayAllHotels();
 
 		for (HotelDto item : listOfHotels) {
@@ -149,23 +144,9 @@ public class HotelController implements Initializable {
 				model.displayHotelInfo(hotelName);
 
 				hotelNameLabel.setText(model.getHotelNameModel());
+
 				hotelDescriptionLabel.setText(model.getHotelDescrModel());
 
-				// List<RoomCategoryAndPrice> roomCategories = new
-				// ArrayList<RoomCategoryAndPrice>();
-				//
-				// for (HotelDto item : listOfHotels) {
-				// RoomCategoryAndPrice roomCategory = (RoomCategoryAndPrice)
-				// item.getRoomCatPrice();
-				// System.out.println("room category: " +
-				// roomCategory.toString());
-				// // String roomCategory = item.getHotel_name();
-				// roomCategories.add(roomCategory);
-				// }
-
-				// priceList.getItems().add(roomCategories);
-
-				// priceLbl.setText("" + model.getPriceModel());
 			}
 		});
 	}
@@ -184,7 +165,7 @@ public class HotelController implements Initializable {
 	}
 
 	public void bookBtnClicked(ActionEvent event) {
-		
+
 		roomCategoryString = roomCategory.getValue();
 		hotel = hotelComboBox.getValue();
 
@@ -203,17 +184,13 @@ public class HotelController implements Initializable {
 		}
 
 		if (roomCategoryString != null && hotel != null && checkInString != null && checkOutString != null) {
-			
+
 			BookingModel bookingModel = new BookingModel(hotel, roomCategoryString, checkInString, checkOutString);
 			bookingModel.toString();
-//			
-//			bookingModel.setHotel(hotel);
-//			bookingModel.setRoomCategory(roomCategory.toString());
-//			bookingModel.setCheckIn(checkInString);
-			
+
 			System.out.println("one: " + checkInString);
 			bookingModel.setCheckOut(checkOutString);
-			
+
 			try {
 				Parent home_page_parent = FXMLLoader.load(getClass().getResource("BookView.fxml"));
 				Scene home_page_scene = new Scene(home_page_parent);
