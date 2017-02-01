@@ -212,3 +212,202 @@ join specialwishescategory swc
 on swc.specialwish_id=sw.specialwish_id
 where b.booking_id=100
 group by b.booking_id;
+
+
+-- LUCAS Inserts
+
+
+
+-- Tariff
+ 
+insert into tariff ( tariff_description, tariff_rate)
+values( 'Seniorentarf',40);
+ 
+insert into tariff ( tariff_description, tariff_rate)
+values( 'Gruppentarif',50);
+ 
+
+-- Customer
+ 
+
+insert into customer (tariff_id, customer_first_name, customer_last_name,
+account_number, customer_birthdate, bonus_points, password, loyalty_programme_member,
+customer_country, customer_city, customer_post_index, customer_street)
+values (null,'Peter','Schulz',1234, '20.01.1986', 2, 'asdf1234', '1,5', 'Germany', 'Brandenburg','16727','Eichelberge 56');
+ 
+insert into customer (tariff_id, customer_first_name, customer_last_name,
+account_number, customer_birthdate, bonus_points, password, loyalty_programme_member,
+customer_country, customer_city, customer_post_index, customer_street)
+values (1,'Kevin','Schach',2345, '20.01.1992', 20, 'qwer', '1,5', 'Germany', 'München','75689','Dammweg 5');
+ 
+insert into customer (tariff_id, customer_first_name, customer_last_name,
+account_number, customer_birthdate, bonus_points, password, loyalty_programme_member,
+customer_country, customer_city, customer_post_index, customer_street)
+values (null,'Justin','Mustermann',3456, '20.01.1996', 4, '3456', '1,5', 'Germany', 'Hamburg','45689','Kleptstraße 4a');
+ 
+insert into customer (tariff_id, customer_first_name, customer_last_name,
+account_number, customer_birthdate, bonus_points, password, loyalty_programme_member,
+customer_country, customer_city, customer_post_index, customer_street)
+values (2,'Klaus','Schulz',4567, '20.01.1986', 15, 'qwer1234', '1,5', 'Germany', 'Hamburg','16727','Rundstraße 90');
+ 
+insert into customer (tariff_id, customer_first_name, customer_last_name,
+account_number, customer_birthdate, bonus_points, password, loyalty_programme_member,
+customer_country, customer_city, customer_post_index, customer_street)
+values (2,'Angela','Wagner',8576, '20.01.1906', 3, 'qweij45', '1,3', 'Germany', 'Potsdam','85972','Hemptweg');
+ 
+insert into customer (tariff_id, customer_first_name, customer_last_name,
+account_number, customer_birthdate, bonus_points, password, loyalty_programme_member,
+customer_country, customer_city, customer_post_index, customer_street)
+values (1,'Petra','Richter',8244, '7.03.1985', 7, 'password', '1,5', 'Germany', 'Brandenburg','14689','Lutzastraße');
+ 
+insert into customer (tariff_id, customer_first_name, customer_last_name,
+account_number, customer_birthdate, bonus_points, password, loyalty_programme_member,
+customer_country, customer_city, customer_post_index, customer_street)
+values (null,'Hartmut','Bauer',4986, '5.12.1950',1 , 'oirtj2958', '1', 'Germany', 'NRW','55248','Ahornweg 3');
+ 
+insert into customer (tariff_id, customer_first_name, customer_last_name,
+account_number, customer_birthdate, bonus_points, password, loyalty_programme_member,
+customer_country, customer_city, customer_post_index, customer_street)
+values (null,'Lutz','Kaiser',2638, '1.01.1986', 2, 'pvorj', '4,5', 'Germany', 'Bremen','15684','Kumstraße');
+ 
+insert into customer (tariff_id, customer_first_name, customer_last_name,
+account_number, customer_birthdate, bonus_points, password, loyalty_programme_member,
+customer_country, customer_city, customer_post_index, customer_street)
+values (2, 'Rainer','Schmitz',4968, '10.02.1972', 8, 'ikzot984', '1,5', 'Germany', 'Brandenburg','25487','Thrustraße');
+ 
+insert into customer (tariff_id, customer_first_name, customer_last_name,
+account_number, customer_birthdate, bonus_points, password, loyalty_programme_member,
+customer_country, customer_city, customer_post_index, customer_street)
+values (null,'Laura','Schwarz',8522, '5.08.1994', 2, 'owiekrhq2', '6,5', 'Germany', 'Heidelberg','16976','Pollenweg');
+ 
+insert into customer (tariff_id, customer_first_name, customer_last_name,
+account_number, customer_birthdate, bonus_points, password, loyalty_programme_member,
+customer_country, customer_city, customer_post_index, customer_street)
+values (null,'Anika','Koch',5559, '8.04.1973', 2, 'wowuvos9', '3,5', 'Germany', 'Pforzheim','56487','Hartlerstraße');
+ 
+insert into customer (tariff_id, customer_first_name, customer_last_name,
+account_number, customer_birthdate, bonus_points, password, loyalty_programme_member,
+customer_country, customer_city, customer_post_index, customer_street)
+values (null,'Rüdiger','Wolf',7765, '25.06.2000', 2, 'owodf9', '4', 'Germany', 'Hessen','32658','Jutwegen');
+ 
+
+-- booking
+ 
+
+insert into booking (CUSTOMER_ID, check_in_date, check_out_date, booking_code)
+values( 1, '20.01.2017', '25.03.2017', 'aftg897');
+ 
+insert into booking (CUSTOMER_ID, check_in_date, check_out_date, booking_code)
+values( 2, '1.11.2016', '20.12.2016', 'irut893');
+ 
+insert into booking (CUSTOMER_ID, check_in_date, check_out_date, booking_code)
+values( 3, '2.02.2017', '10.02.2017', 'owpe903');
+ 
+insert into booking (CUSTOMER_ID, check_in_date, check_out_date, booking_code)
+values( 4, '14.01.2017', '4.03.2017', 'jkfit83');
+ 
+insert into booking (CUSTOMER_ID, check_in_date, check_out_date, booking_code)
+values( 5, '28.04.2017', '5.05.2017', 'lopri48');
+ 
+insert into booking (CUSTOMER_ID, check_in_date, check_out_date, booking_code)
+values( 6, '15.01.2017', '15.02.2017', 'jugitk8');
+ 
+insert into booking (CUSTOMER_ID, check_in_date, check_out_date, booking_code)
+values( 7, '1.01.2017', '3.02.2017', 'khizo69');
+ 
+insert into booking (CUSTOMER_ID, check_in_date, check_out_date, booking_code)
+values( 8, '9.01.2017', '27.03.2017', 'jgitke3');
+ 
+insert into booking (CUSTOMER_ID, check_in_date, check_out_date, booking_code)
+values( 9, '21.01.2017', '12.02.2017', 'ajsudi3'); -- error "integrity constraint (%s.%s) violated - parent key not found"
+ 
+insert into booking (CUSTOMER_ID, check_in_date, check_out_date, booking_code)
+values( 10, '4.05.2017', '18.06.2017', 'qoepto9');
+ 
+insert into booking (CUSTOMER_ID, check_in_date, check_out_date, booking_code)
+values( 11, '24.12.2016', '28.12.2016', 'mhjgu82');
+ 
+insert into booking (CUSTOMER_ID, check_in_date, check_out_date, booking_code)
+values( 12, '20.06.2016', '5.11.2016', 'kgjrui4');
+ 
+insert into booking (CUSTOMER_ID, check_in_date, check_out_date, booking_code)
+values( 13, '18.02.2017', '25.03.2017', 'peotlz8');
+ 
+ 
+ 
+-- FilledQuestionnaire
+ 
+insert into filledquestionnaire (booking_id, questionid, answer)
+values (3, 4, 'Wir konnten uns gut von unseren harten Tage in der Arbeit entspannen. Sauna und Pool fanden wir am besten!');
+ 
+insert into filledquestionnaire (booking_id, questionid, answer)
+values (10, 1, 'Die Ausstattung in den Zimmer ist super, aber die Sauberkeit ist manchmal nicht immer gewährleistet.');
+ 
+insert into filledquestionnaire (booking_id, questionid, answer)
+values (8, 5, 'Die Umgebung war super, deshalb würde ich hier gerne nochmal hin.');
+ 
+insert into filledquestionnaire (booking_id, questionid, answer)
+values (5, 3, 'Die Verkehrsanbindung ist super, man ist einfach immer mitten in der Stadt.');
+ 
+insert into filledquestionnaire (booking_id, questionid, answer)
+values (7, 2, 'The food was pretty good for what I have seen. I just love the german kitchen!');
+ 
+-- Question
+ 
+insert into question (questionde, questionen)
+values('Wie gefällt Ihnen das Hotel?', 'How do you like the hotel?');
+ 
+insert into question (questionde, questionen)
+values('Wie fanden Sie die Auswahl und Qulität des Essens?', 'How do you like the selection and quality of the food?');
+ 
+insert into question (questionde, questionen)
+values('Wie gefällt Ihnen die Lage des Hotels?', 'How do you like the location of the hotel?');
+ 
+insert into question (questionde, questionen)
+values('Wie empfanden Sie die Möglichkeiten der Freizeitgestaltung und Entspannung?', 'How do you feel about the possibilities of leisure and relaxation?');
+ 
+insert into question (questionde, questionen)
+values('Würden Sie das Hotel ein zweites Mal buchen wollen?', 'Would you book the hotel again a second time?');
+ 
+-- SpecialWishes
+ 
+insert into specialwishes (special_wish_id, booking_id, sw_date)
+values (4,3,'8.02.2017');
+ 
+insert into specialwishes (special_wish_id, booking_id, sw_date)
+values (2,1,'12.03.2017');
+ 
+insert into specialwishes (special_wish_id, booking_id, sw_date)
+values (5,8,'27.03.2017');
+ 
+insert into specialwishes (special_wish_id, booking_id, sw_date)
+values (3,10,'4.05.2017');
+ 
+insert into specialwishes (special_wish_id, booking_id, sw_date)
+values (1,9,'23.01.2017');
+ 
+
+--SpecialWishesCategory
+ 
+insert into specialwishescategory (SPECIAL_WISH_DESCRIPTION,SPECIAL_WISH_PRICE)
+values ('Kaffee für bis zu drei Personen auf das Zimmer',7);
+ 
+insert into specialwishescategory (SPECIAL_WISH_DESCRIPTION,SPECIAL_WISH_PRICE)
+values ('Extra Kissen für zwei Betten',3);
+ 
+insert into specialwishescategory (SPECIAL_WISH_DESCRIPTION,SPECIAL_WISH_PRICE)
+values ('Extra Klappbett',50);
+ 
+insert into specialwishescategory (SPECIAL_WISH_DESCRIPTION,SPECIAL_WISH_PRICE)
+values ('Extra Kinderbett',20);
+ 
+insert into specialwishescategory (SPECIAL_WISH_DESCRIPTION,SPECIAL_WISH_PRICE)
+values ('Champagner für zwei Personen',40);
+ 
+ 
+
+
+
+
+
+
